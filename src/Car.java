@@ -1,14 +1,23 @@
 public class Car {
+    private String make;
     private String model;
     private int year;
     private int power;
 
-    public Car(String model, int year, int power){
+    public Car(String make, String model, int year, int power){
+        this.make = make;
         this.model = model;
         this.power = power;
         this.year = year;
     }
 
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
 
     public String getModel() {
         return model;
@@ -36,6 +45,6 @@ public class Car {
 
     @Override
     public String toString() {
-        return String.format("Модель: %s | Год: %d | Мощность: %d", model, year, power);
+        return String.format("Марка: %s | Модель: %s | Год: %d | Мощность: %d", make, model, year, power);
     }
 }
