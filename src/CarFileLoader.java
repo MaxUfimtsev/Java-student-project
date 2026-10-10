@@ -1,14 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CarFileLoader {
 
-    public static ArrayList<Car> LoadNewCars(String path){
+    public static List<Car> loadNewCars(String path){
 
         var cars = new ArrayList<Car>();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -21,20 +20,20 @@ public class CarFileLoader {
                     continue;
                 }
                 try {
-                    cars.add(CarParse(line));
+                    cars.add(carParse(line));
                 } catch (IllegalArgumentException e) {
                     System.out.println("Строка " + lineNumber + " пропущена. " + e.getMessage());
                 }
             }
 
         } catch (IOException e) {
-            throw new RuntimeException("Не удалось прочитать файл: " + path);
+            System.out.println("Не удалось прочитать файл: " + path);
         }
 
         return cars;
     }
 
-    private static Car CarParse(String line) {
+    private static Car carParse(String line) {
         var carParts = Arrays.stream(line.split(";"))
                 .map(item -> item.trim())
                 .toArray(String[]::new);
@@ -43,6 +42,10 @@ public class CarFileLoader {
             throw new IllegalArgumentException("Ожидалось 4 поля, найдено " + carParts.length);
         }
 
-        return new Car(carParts[0], carParts[1], Integer.parseInt(carParts[2]), Integer.parseInt(carParts[3]));
+        try {
+            return new Car(carParts[0], carParts[1], Integer.parseInt(carParts[2]), Integer.parseInt(carParts[3]));
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("Год и мощность должны быть числами.");
+        }
     }
 }

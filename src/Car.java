@@ -1,3 +1,5 @@
+import java.time.Year;
+
 public class Car {
     private String make;
     private String model;
@@ -5,10 +7,10 @@ public class Car {
     private int power;
 
     public Car(String make, String model, int year, int power){
-        this.make = make;
-        this.model = model;
-        this.power = power;
-        this.year = year;
+        setMake(make);
+        setModel(model);
+        setPower(power);
+        setYear(year);
     }
 
     public String getMake() {
@@ -16,6 +18,9 @@ public class Car {
     }
 
     public void setMake(String make) {
+        if (make.isBlank()){
+            throw new IllegalArgumentException("Пустая строка бренда.");
+        }
         this.make = make;
     }
 
@@ -24,6 +29,9 @@ public class Car {
     }
 
     public void setModel(String model) {
+        if (model.isBlank()){
+            throw new IllegalArgumentException("Пустая строка модели.");
+        }
         this.model = model;
     }
 
@@ -32,6 +40,9 @@ public class Car {
     }
 
     public void setPower(int power) {
+        if (power <= 0){
+            throw new IllegalArgumentException("Мощность должна быть больше 0.");
+        }
         this.power = power;
     }
 
@@ -40,6 +51,9 @@ public class Car {
     }
 
     public void setYear(int year) {
+        if (year <= 1885 || year > Year.now().getValue()+1){
+            throw new IllegalArgumentException("Неверное значение года производства авто.");
+        }
         this.year = year;
     }
 
