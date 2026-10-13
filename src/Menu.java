@@ -98,7 +98,13 @@ public class Menu {
         System.out.println("Введите путь до файла.");
         var filePath = scanner.nextLine().trim();
 
-        var cars = CarFileLoader.loadNewCars(filePath);
+        List<Car> cars = null;
+        if (filePath.toLowerCase().endsWith(".txt")) {
+            cars = CarFileLoader.loadNewCars(filePath);
+        } else if (filePath.toLowerCase().endsWith(".json")) {
+            cars = CarJsonLoader.loadNewCars(filePath);
+        }
+
         storage.addAll(cars);
 
         System.out.printf("Загружено автомобилей: %d%n", cars.size());

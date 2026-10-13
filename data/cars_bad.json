@@ -1,0 +1,16 @@
+[
+  {"make": "Porsche", "model": "Cayenne", "year": 2018, "power": 353},
+  {"make": "BMW", "model": "X5", "year": 2020, "power": -5},
+  {"make": "Audi", "model": "A4", "year": "abc", "power": 150},
+  {"model": "Focus", "year": 2020, "power": 100},
+  {"make": "Ford", "model": "", "year": 2020, "power": 100},
+  42,
+  {"make": "Ford", "model": "Focus", "year": 1200, "power": 100},
+  {"make": "Ford", "model": "Focus", "year": 2099, "power": 100},
+  {"make": "Skoda", "model": "Octavia", "year": 2021, "power": null},
+  {"make": "Tank", "model": "500", "year": 2023, "power": 299},
+  {"make": "Lada", "model": "Vesta"},
+  {"make": "   ", "model": "Golf", "year": 2019, "power": 110},
+  {"make": "Mercedes-Benz", "model": "G-Class", "year": 2026, "power": 585},
+  {"make": "Kia", "model": "Rio", "year": "2020", "power": 123}
+]

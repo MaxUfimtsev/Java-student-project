@@ -18,7 +18,7 @@ public class Car {
     }
 
     public void setMake(String make) {
-        if (make.isBlank()){
+        if (make == null || make.isBlank()){
             throw new IllegalArgumentException("Пустая строка бренда.");
         }
         this.make = make;
@@ -29,7 +29,7 @@ public class Car {
     }
 
     public void setModel(String model) {
-        if (model.isBlank()){
+        if (model == null || model.isBlank()){
             throw new IllegalArgumentException("Пустая строка модели.");
         }
         this.model = model;
@@ -40,7 +40,7 @@ public class Car {
     }
 
     public void setPower(int power) {
-        if (power <= 0){
+        if (power <= 0) {
             throw new IllegalArgumentException("Мощность должна быть больше 0.");
         }
         this.power = power;
