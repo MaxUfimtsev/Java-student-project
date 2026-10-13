@@ -14,8 +14,7 @@ public class Menu {
         System.out.println("Добрый день! Выберите способ добавления авто в систему:");
         while (true){
             printMenu();
-            String input = scanner.nextLine();
-            int command = intParse(input);
+            int command = intParse("Ваш ввод: ");
             switch (command) {
                 case 1 -> addManually();
                 case 2 -> loadFromFile();
@@ -40,16 +39,41 @@ public class Menu {
                 2. - Загрузить из файла.
                 3. - Обработать данные.
                 0. - Выйти.
-                Ваш ввод:\s""");
+                """);
+    }
+
+    private void printProcessMenu() {
+        System.out.print("""
+                1. - Вывести все.
+                2. - Фильтровать.
+                3. - Сортировать.
+                0. - Выйти.
+                """);
+    }
+
+    private void printChooseMenu() {
+        System.out.print("""
+                1. - По году.
+                2. - По мощности.
+                0. - Выйти.
+                """);
+    }
+
+    private void printFilterNumber() {
+        System.out.print("""
+                От какого числа нужно фильтровать?
+                """);
     }
 
     private int intParse(String command) {
-        try {
-            return Integer.parseInt(command);
-        } catch (IllegalArgumentException e){
-            System.out.println();
-            System.out.println("Неверный формат команды! Попробуйте ввести цифры.");
-            return 123;
+        while (true){
+            System.out.print(command);
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e){
+                System.out.println();
+                System.out.println("Неверный формат команды! Попробуйте ввести цифры.");
+            }
         }
     }
 
@@ -77,22 +101,96 @@ public class Menu {
         var cars = CarFileLoader.loadNewCars(filePath);
         storage.addAll(cars);
 
-        System.out.println(String.format("Загружено автомобилей: %d", cars.size()));
+        System.out.printf("Загружено автомобилей: %d%n", cars.size());
         System.out.println();
     }
 
     private void processData() {
-        if (storage.size() > 0){
+        if (!storage.isEmpty()){
             System.out.println();
-            System.out.println("Вот все добавленные авто:");
-            for (var car: storage){
-                System.out.println(car);
+            System.out.println("Выберите формат вывода данных:");
+
+            while (true){
+                printProcessMenu();
+                int command = intParse("Ваш ввод: ");
+                switch (command) {
+                    case 1 -> showFormattedCarList(CarProcessor.toDisplayNames(storage));
+                    case 2 -> filterCars();
+                    case 3 -> sortCars();
+                    case 0 -> {
+                        System.out.println();
+                        return;
+                    }
+                    default -> {
+                        System.out.println();
+                        System.out.println("Неизвестная команда.");
+                        System.out.println();
+                    }
+                }
             }
         }
         else {
-            System.out.println();
             System.out.println("Список пуст!");
-            System.out.println();
+            return;
+        }
+    }
+
+    private void showFormattedCarList(List<String> cars) {
+        System.out.println();
+        System.out.println("Вот все добавленные авто:");
+        for (var car: cars){
+            System.out.print(car);
+        }
+        System.out.println();
+    }
+
+    private void filterCars() {
+        printChooseMenu();
+        System.out.println();
+        int filterCommand = intParse("Ваш ввод: ");
+        switch (filterCommand) {
+            case 1 -> {
+                var cars = List.copyOf(storage);
+                printFilterNumber();
+                int filterNumber = intParse("Введите число: ");
+                cars = CarProcessor.filterByMinYear(cars, filterNumber);
+                var strCars = CarProcessor.toDisplayNames(cars);
+                showFormattedCarList(strCars);
+            }
+            case 2 -> {
+                var cars = List.copyOf(storage);
+                printFilterNumber();
+                int filterNumber = intParse("Введите число: ");
+                cars = CarProcessor.filterByMinPower(cars, filterNumber);
+                var strCars = CarProcessor.toDisplayNames(cars);
+                showFormattedCarList(strCars);
+            }
+            case 0 -> {
+                return;
+            }
+        }
+    }
+
+    private void sortCars() {
+        printChooseMenu();
+        System.out.println();
+        int sortCommand = intParse("Ваш ввод: ");
+        switch (sortCommand) {
+            case 1 -> {
+                var cars = List.copyOf(storage);
+                cars = CarProcessor.sortByYear(cars);
+                var strCars = CarProcessor.toDisplayNames(cars);
+                showFormattedCarList(strCars);
+            }
+            case 2 -> {
+                var cars = List.copyOf(storage);
+                cars = CarProcessor.sortByPower(cars);
+                var strCars = CarProcessor.toDisplayNames(cars);
+                showFormattedCarList(strCars);
+            }
+            case 0 -> {
+                return;
+            }
         }
     }
 }
