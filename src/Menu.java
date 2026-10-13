@@ -136,12 +136,18 @@ public class Menu {
     }
 
     private void showFormattedCarList(List<String> cars) {
-        System.out.println();
-        System.out.println("Вот все добавленные авто:");
-        for (var car: cars){
-            System.out.print(car);
+        if (cars.isEmpty()){
+            System.out.println("Ничего не найдено.");
+            return;
         }
-        System.out.println();
+        else {
+            System.out.println();
+            System.out.println("Ниже список авто:");
+            for (var car: cars){
+                System.out.print(car);
+            }
+            System.out.println();
+        }
     }
 
     private void filterCars() {
@@ -168,6 +174,11 @@ public class Menu {
             case 0 -> {
                 return;
             }
+            default -> {
+                System.out.println();
+                System.out.println("Неизвестная команда.");
+                System.out.println();
+            }
         }
     }
 
@@ -190,6 +201,11 @@ public class Menu {
             }
             case 0 -> {
                 return;
+            }
+            default -> {
+                System.out.println();
+                System.out.println("Неизвестная команда.");
+                System.out.println();
             }
         }
     }
