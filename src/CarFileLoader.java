@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +11,7 @@ public class CarFileLoader {
     public static List<Car> loadNewCars(String path){
 
         var cars = new ArrayList<Car>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(path))) {
 
             String line;
             var lineNumber = 0;
@@ -33,7 +34,7 @@ public class CarFileLoader {
         return cars;
     }
 
-    private static Car carParse(String line) {
+    public static Car carParse(String line) {
         var carParts = Arrays.stream(line.split(";"))
                 .map(item -> item.trim())
                 .toArray(String[]::new);
