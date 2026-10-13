@@ -5,12 +5,22 @@ public class Car {
     private String model;
     private int year;
     private int power;
+    private String color;
 
-    public Car(String make, String model, int year, int power){
+    public Car(String make, String model, int year, int power, String color){
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.power = power;
+        this.color = color;
+    }
+
+    public void validate() {
         setMake(make);
         setModel(model);
-        setPower(power);
         setYear(year);
+        setPower(power);
+        setColor(color);
     }
 
     public String getMake() {
@@ -57,8 +67,19 @@ public class Car {
         this.year = year;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        if (color == null || color.isBlank()){
+            throw new IllegalArgumentException("Цвет не может быть пустым");
+        }
+        this.color = color;
+    }
+
     @Override
     public String toString() {
-        return String.format("Марка: %s | Модель: %s | Год: %d | Мощность: %d", make, model, year, power);
+        return String.format("%s %s (%d г., %d л.с.) %s", make, model, year, power, color);
     }
 }

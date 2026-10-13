@@ -5,8 +5,7 @@ public class CarProcessor {
 
     public static List<String> toDisplayNames(List<Car> cars) {
         return cars.stream()
-                .map(car -> String.format("%s %s (%d г., %d л.с.)",
-                        car.getMake(), car.getModel(), car.getYear(), car.getPower()))
+                .map(Car::toString)
                 .toList();
     }
 

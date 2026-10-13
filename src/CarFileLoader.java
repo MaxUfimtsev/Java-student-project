@@ -35,16 +35,23 @@ public class CarFileLoader {
     }
 
     public static Car carParse(String line) {
-        var carParts = Arrays.stream(line.split(";"))
+        var carParts = Arrays.stream(line.split("[;,]"))
                 .map(item -> item.trim())
                 .toArray(String[]::new);
 
-        if (carParts.length != 4){
-            throw new IllegalArgumentException("Ожидалось 4 поля, найдено " + carParts.length);
+        if (carParts.length != 5){
+            throw new IllegalArgumentException("Ожидалось 5 поля, найдено " + carParts.length);
         }
 
         try {
-            return new Car(carParts[0], carParts[1], Integer.parseInt(carParts[2]), Integer.parseInt(carParts[3]));
+            var car = new Car(
+                    carParts[0],
+                    carParts[1],
+                    Integer.parseInt(carParts[2]),
+                    Integer.parseInt(carParts[3]),
+                    carParts[4]);
+            car.validate();
+            return car;
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("Год и мощность должны быть числами.");
         }

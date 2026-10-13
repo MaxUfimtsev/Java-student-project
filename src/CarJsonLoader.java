@@ -39,8 +39,8 @@ public class CarJsonLoader {
 
     private static Car carParse(JsonObject object) {
 
-        var preCar = gson.fromJson(object, Car.class);
-
-        return new Car(preCar.getMake(), preCar.getModel(), preCar.getYear(), preCar.getPower());
+        var car = gson.fromJson(object, Car.class);
+        car.validate();
+        return car;
     }
 }

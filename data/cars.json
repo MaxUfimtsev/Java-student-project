@@ -3,30 +3,35 @@
         "make": "Toyota",
         "model": "Camry",
         "year": 2022,
-        "power": 200
+        "power": 200,
+        "color": "Black"
     },
     {
         "make": "BMW",
         "model": "M5",
         "year": 2023,
-        "power": 600
+        "power": 600,
+        "color": "Blue"
     },
     {
         "make": "Mercedes-Benz",
         "model": "E-Class",
         "year": 2021,
-        "power": 249
+        "power": 249,
+        "color": "White"
     },
     {
         "make": "Audi",
         "model": "A6",
         "year": 2022,
-        "power": 245
+        "power": 245,
+        "color": "Grey"
     },
     {
         "make": "Hyundai",
         "model": "Solaris",
         "year": 2020,
-        "power": 123
+        "power": 123,
+        "color": "Silver"
     }
 ]

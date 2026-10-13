@@ -1,8 +1,6 @@
-Porsche;Cayenne;2018;353
-Tank;500;2023;299
-Mercedes-Benz; G-Class;2026;585
-Rolls-Royce;Cullinan;2026;600
-Land Rover; Range Rover; 2014; 510;
-Lada; Niva Legend Sport; 2026;
-Lada; Granta Sport; 2024; ;
-Lada; Vesta; 2025; one twenty-two;
+Porsche;Cayenne;2018;353;Черный
+Tank;500;2023;299;Синий
+Mercedes-Benz; G-Class;2026;585;Синий
+Rolls-Royce;Cullinan;2026;600;Черный
+Land Rover; Range Rover; 2014; 510;Красный
+Lada; Niva Legend Sport; 2026;Черный

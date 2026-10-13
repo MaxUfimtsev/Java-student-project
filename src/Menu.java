@@ -79,7 +79,7 @@ public class Menu {
 
     private void addManually() {
         System.out.println();
-        System.out.println("Введите авто через ';' в виде Марка;Модель;Год;Мощность");
+        System.out.println("Введите авто через ';' в виде Марка;Модель;Год;Мощность;Цвет");
         var input = scanner.nextLine();
 
         try {
@@ -103,9 +103,10 @@ public class Menu {
             cars = CarFileLoader.loadNewCars(filePath);
         } else if (filePath.toLowerCase().endsWith(".json")) {
             cars = CarJsonLoader.loadNewCars(filePath);
-        }
-        else {
-            System.out.println("Поддерживаются только файлы .txt и .json");
+        } else if (filePath.toLowerCase().endsWith(".csv")) {
+            cars = CarFileLoader.loadNewCars(filePath);
+        } else {
+            System.out.println("Поддерживаются только файлы .txt, .csv и .json");
             System.out.println();
             return;
         }
