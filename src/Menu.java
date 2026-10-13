@@ -59,17 +59,17 @@ public class Menu {
                 """);
     }
 
-    private void printFilterNumber() {
-        System.out.print("""
-                От какого числа нужно фильтровать?
-                """);
+    private void printFilterNumber(String command) {
+        System.out.printf("""
+                %s
+                """, command);
     }
 
     private int intParse(String command) {
         while (true){
             System.out.print(command);
             try {
-                return Integer.parseInt(scanner.nextLine());
+                return Integer.parseInt(scanner.nextLine().trim());
             } catch (NumberFormatException e){
                 System.out.println();
                 System.out.println("Неверный формат команды! Попробуйте ввести цифры.");
@@ -96,7 +96,7 @@ public class Menu {
     private void loadFromFile() {
         System.out.println();
         System.out.println("Введите путь до файла.");
-        var filePath = scanner.nextLine();
+        var filePath = scanner.nextLine().trim();
 
         var cars = CarFileLoader.loadNewCars(filePath);
         storage.addAll(cars);
@@ -108,7 +108,7 @@ public class Menu {
     private void processData() {
         if (!storage.isEmpty()){
             System.out.println();
-            System.out.println("Выберите формат вывода данных:");
+            System.out.println("Выберите действие:");
 
             while (true){
                 printProcessMenu();
@@ -144,7 +144,7 @@ public class Menu {
             System.out.println();
             System.out.println("Ниже список авто:");
             for (var car: cars){
-                System.out.print(car);
+                System.out.println(car);
             }
             System.out.println();
         }
@@ -156,20 +156,16 @@ public class Menu {
         int filterCommand = intParse("Ваш ввод: ");
         switch (filterCommand) {
             case 1 -> {
-                var cars = List.copyOf(storage);
-                printFilterNumber();
+                printFilterNumber("Какой минимальный год выпуска?");
                 int filterNumber = intParse("Введите число: ");
-                cars = CarProcessor.filterByMinYear(cars, filterNumber);
-                var strCars = CarProcessor.toDisplayNames(cars);
-                showFormattedCarList(strCars);
+                var cars = CarProcessor.filterByMinYear(storage, filterNumber);
+                printCars(cars);
             }
             case 2 -> {
-                var cars = List.copyOf(storage);
-                printFilterNumber();
+                printFilterNumber("Какая минимальная мощность?");
                 int filterNumber = intParse("Введите число: ");
-                cars = CarProcessor.filterByMinPower(cars, filterNumber);
-                var strCars = CarProcessor.toDisplayNames(cars);
-                showFormattedCarList(strCars);
+                var cars = CarProcessor.filterByMinPower(storage, filterNumber);
+                printCars(cars);
             }
             case 0 -> {
                 return;
@@ -188,16 +184,12 @@ public class Menu {
         int sortCommand = intParse("Ваш ввод: ");
         switch (sortCommand) {
             case 1 -> {
-                var cars = List.copyOf(storage);
-                cars = CarProcessor.sortByYear(cars);
-                var strCars = CarProcessor.toDisplayNames(cars);
-                showFormattedCarList(strCars);
+                var cars = CarProcessor.sortByYear(storage);
+                printCars(cars);
             }
             case 2 -> {
-                var cars = List.copyOf(storage);
-                cars = CarProcessor.sortByPower(cars);
-                var strCars = CarProcessor.toDisplayNames(cars);
-                showFormattedCarList(strCars);
+                var cars = CarProcessor.sortByPower(storage);
+                printCars(cars);
             }
             case 0 -> {
                 return;
@@ -208,5 +200,10 @@ public class Menu {
                 System.out.println();
             }
         }
+    }
+
+    private void printCars(List<Car> cars) {
+        var strCars = CarProcessor.toDisplayNames(cars);
+        showFormattedCarList(strCars);
     }
 }
