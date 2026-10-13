@@ -11,7 +11,7 @@ public class Menu {
     }
 
     public void runApp() {
-        System.out.println("Добрый день! Выберите способ добавления авто в систему:");
+        System.out.println("Добрый день! Выберите действие:");
         while (true){
             printMenu();
             int command = intParse("Ваш ввод: ");
@@ -104,6 +104,11 @@ public class Menu {
         } else if (filePath.toLowerCase().endsWith(".json")) {
             cars = CarJsonLoader.loadNewCars(filePath);
         }
+        else {
+            System.out.println("Поддерживаются только файлы .txt и .json");
+            System.out.println();
+            return;
+        }
 
         storage.addAll(cars);
 
@@ -146,14 +151,13 @@ public class Menu {
             System.out.println("Ничего не найдено.");
             return;
         }
-        else {
-            System.out.println();
-            System.out.println("Ниже список авто:");
-            for (var car: cars){
-                System.out.println(car);
-            }
-            System.out.println();
+
+        System.out.println();
+        System.out.println("Ниже список авто:");
+        for (var car: cars){
+            System.out.println(car);
         }
+        System.out.println();
     }
 
     private void filterCars() {

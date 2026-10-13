@@ -1,0 +1,65 @@
+[33mcommit 466a6401ff115202152f97d5e9adc091ffd96677[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 17:16:03 2026 +0500
+
+    Add json file reader. Update Menu class for read json format. Update Car class for json format.
+
+[33mcommit 372ea2884c0bf096261198c17a4a87de67e528ae[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 16:10:42 2026 +0500
+
+    Add Maven build and Gson dependency
+
+[33mcommit 72f7fcc539de82ec7be93a0a86e97405777ee3fd[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 15:49:12 2026 +0500
+
+    Refactor: improve code readability
+
+[33mcommit c6e7e438ee955392e49d0aba478de8b390a2e8cd[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 14:57:38 2026 +0500
+
+    Fast refactor and bug fix.
+
+[33mcommit 4107aca98b5c10f98952bdb8ac966156c5f8c8e9[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 14:47:15 2026 +0500
+
+    Add CarProcessor class for modification list of cars. Refactor Menu class.
+
+[33mcommit 2735d321235fd5281c3ab4632fb04b20109c291e[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Tue Oct 13 12:03:10 2026 +0500
+
+    Add new class Menu with functional commands
+
+[33mcommit c77214ea1048a9b7c80a46d0eb373e132c9027b8[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Sun Oct 11 00:18:51 2026 +0500
+
+    Fix all modules to avoid exeptions.
+
+[33mcommit 6e866b65cce20b8ab5acd53c932791189d1d3388[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Sat Oct 10 23:24:23 2026 +0500
+
+    Added Reader file class. Updated cars.txt file to tests.
+
+[33mcommit f1809a540681915d2f44113844a131e222d6cfca[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Sat Oct 10 18:47:03 2026 +0500
+
+    Updated Car class and Added text file for test
+
+[33mcommit c9f7df4417e782f7493ed48573f3068b4aec9d96[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Sat Oct 10 18:32:25 2026 +0500
+
+    Added a new class Car
+
+[33mcommit 8ffd37f5df01dd4a0f55f809e2cf5a80f130c101[m
+Author: MaxUfimtsev <maxufimcev094@gmail.com>
+Date:   Sat Oct 10 17:33:42 2026 +0500
+
+    Initial project setup
