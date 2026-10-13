@@ -1,7 +1,0 @@
-Audi;A4;abc;150
-Fiat;500;2020
-;;2020;100
-BMW;X5;2020;-5
-Ford;Focus;1200;100
-Ford;Focus;2099;100
-Porsche;Cayenne;2018;353
