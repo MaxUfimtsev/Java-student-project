@@ -3,11 +3,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    private List<Car> storage;
+    private CarArrayList storage;
     Scanner scanner = new Scanner(System.in);
 
     public Menu() {
-        this.storage = new ArrayList<>();
+        this.storage = new CarArrayList();
     }
 
     public void runApp() {

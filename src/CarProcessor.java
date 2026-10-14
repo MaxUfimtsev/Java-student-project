@@ -9,7 +9,17 @@ public class CarProcessor {
                 .toList();
     }
 
+    public static List<String> toDisplayNames(CarArrayList cars) {
+        return cars.stream().map(Car::toString).toList();
+    }
+
     public static List<Car> filterByMinPower(List<Car> cars, int minPower) {
+        return cars.stream()
+                .filter(car -> car.getPower() >= minPower)
+                .toList();
+    }
+
+    public static List<Car> filterByMinPower(CarArrayList cars, int minPower) {
         return cars.stream()
                 .filter(car -> car.getPower() >= minPower)
                 .toList();
@@ -21,13 +31,31 @@ public class CarProcessor {
                 .toList();
     }
 
+    public static List<Car> filterByMinYear(CarArrayList cars, int minYear) {
+        return cars.stream()
+                .filter(car -> car.getYear() >= minYear)
+                .toList();
+    }
+
     public static List<Car> sortByYear(List<Car> cars) {
         return cars.stream()
                 .sorted(Comparator.comparingInt(Car::getYear))
                 .toList();
     }
 
+    public static List<Car> sortByYear(CarArrayList cars) {
+        return cars.stream()
+                .sorted(Comparator.comparingInt(Car::getYear))
+                .toList();
+    }
+
     public static List<Car> sortByPower(List<Car> cars) {
+        return cars.stream()
+                .sorted(Comparator.comparingInt(Car::getPower))
+                .toList();
+    }
+
+    public static List<Car> sortByPower(CarArrayList cars) {
         return cars.stream()
                 .sorted(Comparator.comparingInt(Car::getPower))
                 .toList();
