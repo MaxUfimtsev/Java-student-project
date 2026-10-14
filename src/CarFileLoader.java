@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class CarFileLoader {
                 }
             }
 
-        } catch (IOException e) {
+        } catch (IOException | InvalidPathException e) {
             System.out.println("Не удалось прочитать файл: " + path);
         }
 
