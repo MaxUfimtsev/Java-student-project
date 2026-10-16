@@ -13,6 +13,7 @@ public class Car {
         this.year = year;
         this.power = power;
         this.color = color;
+        validate();
     }
 
     public void validate() {

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    private CarArrayList storage;
+    private final CarArrayList storage;
     Scanner scanner = new Scanner(System.in);
 
     public Menu() {
@@ -21,17 +21,17 @@ public class Menu {
                 case 2 -> loadFromFile();
                 case 3 -> processData();
                 case 4 -> {
-                    printCars(storage.stream().toList());
+                    showFormattedCarList(CarProcessor.toDisplayNames(storage));
                     System.out.println("Введите номер строки, который хотите удалить");
                     deleteCar();
                 }
                 case 5 -> {
-                    printCars(storage.stream().toList());
+                    showFormattedCarList(CarProcessor.toDisplayNames(storage));
                     System.out.println("Введите номер строки, который хотите выбрать");
                     getCar();
                 }
                 case 6 -> {
-                    printCars(storage.stream().toList());
+                    showFormattedCarList(CarProcessor.toDisplayNames(storage));
                 }
                 case 0 -> {
                     System.out.println();
@@ -216,9 +216,7 @@ public class Menu {
 
         System.out.println();
         System.out.println("Ниже список авто:");
-//        for (var car: cars){
-//            System.out.println(car);
-//        }
+
         for (var i = 0; i < cars.size(); i++){
             System.out.printf("%d) %s%n", i+1, cars.get(i));
         }
