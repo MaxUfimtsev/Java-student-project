@@ -22,12 +22,10 @@ public class Menu {
                 case 3 -> processData();
                 case 4 -> {
                     showFormattedCarList(CarProcessor.toDisplayNames(storage));
-                    System.out.println("Введите номер строки, который хотите удалить");
                     deleteCar();
                 }
                 case 5 -> {
                     showFormattedCarList(CarProcessor.toDisplayNames(storage));
-                    System.out.println("Введите номер строки, который хотите выбрать");
                     getCar();
                 }
                 case 6 -> {
@@ -95,7 +93,11 @@ public class Menu {
     }
 
     private void deleteCar() {
-        if (storage.isEmpty()) return;
+        if (storage.isEmpty()) {
+            System.out.println();
+            return;
+        }
+        System.out.println("Введите номер строки, который хотите удалить");
         while (true) {
             try {
                 int index = Integer.parseInt(scanner.nextLine());
@@ -105,7 +107,7 @@ public class Menu {
                 }
                 if (index <= storage.size() && index > 0) {
                     var car = storage.remove(index - 1);
-                    System.out.printf("Вы выбрали авто: %s", car.toString());
+                    System.out.printf("Вы удалили авто: %s", car.toString());
                     System.out.println("\n");
                     return;
                 }
@@ -117,7 +119,11 @@ public class Menu {
     }
 
     private void getCar() {
-        if (storage.isEmpty()) return;
+        if (storage.isEmpty()) {
+            System.out.println();
+            return;
+        }
+        System.out.println("Введите номер строки, который хотите выбрать");
         while (true) {
             try {
                 int index = Integer.parseInt(scanner.nextLine());
@@ -136,6 +142,10 @@ public class Menu {
                 System.out.println("Введите пожалуйста число");
             }
         }
+    }
+
+    private static void extracted() {
+        return;
     }
 
     private void addManually() {
