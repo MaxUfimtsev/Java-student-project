@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +20,19 @@ public class Menu {
                 case 1 -> addManually();
                 case 2 -> loadFromFile();
                 case 3 -> processData();
+                case 4 -> {
+                    printCars(storage.stream().toList());
+                    System.out.println("Введите номер строки, который хотите удалить");
+                    deleteCar();
+                }
+                case 5 -> {
+                    printCars(storage.stream().toList());
+                    System.out.println("Введите номер строки, который хотите выбрать");
+                    getCar();
+                }
+                case 6 -> {
+                    printCars(storage.stream().toList());
+                }
                 case 0 -> {
                     System.out.println();
                     System.out.println("Завершение работы программы...");
@@ -38,6 +52,9 @@ public class Menu {
                 1. - Добавить вручную.
                 2. - Загрузить из файла.
                 3. - Обработать данные.
+                4. - Удалить авто.
+                5. - Выбрать авто.
+                6. - Показать все.
                 0. - Выйти.
                 """);
     }
@@ -73,6 +90,50 @@ public class Menu {
             } catch (NumberFormatException e){
                 System.out.println();
                 System.out.println("Неверный формат команды! Попробуйте ввести цифры.");
+            }
+        }
+    }
+
+    private void deleteCar() {
+        if (storage.isEmpty()) return;
+        while (true) {
+            try {
+                int index = Integer.parseInt(scanner.nextLine());
+                if (index == 0) {
+                    System.out.println();
+                    return;
+                }
+                if (index <= storage.size() && index > 0) {
+                    var car = storage.remove(index - 1);
+                    System.out.printf("Вы выбрали авто: %s", car.toString());
+                    System.out.println("\n");
+                    return;
+                }
+                System.out.println("В базе нет такого индекса, попробуйте еще раз!");
+            } catch (NumberFormatException e) {
+                System.out.println("Введите пожалуйста число");
+            }
+        }
+    }
+
+    private void getCar() {
+        if (storage.isEmpty()) return;
+        while (true) {
+            try {
+                int index = Integer.parseInt(scanner.nextLine());
+                if (index == 0) {
+                    System.out.println();
+                    return;
+                }
+                if (index <= storage.size() && index > 0) {
+                    var car = storage.get(index - 1);
+                    System.out.printf("Вы выбрали авто: %s", car.toString());
+                    System.out.println("\n");
+                    return;
+                }
+                System.out.println("В базе нет такого индекса, попробуйте еще раз!");
+            } catch (NumberFormatException e) {
+                System.out.println("Введите пожалуйста число");
             }
         }
     }
@@ -155,8 +216,11 @@ public class Menu {
 
         System.out.println();
         System.out.println("Ниже список авто:");
-        for (var car: cars){
-            System.out.println(car);
+//        for (var car: cars){
+//            System.out.println(car);
+//        }
+        for (var i = 0; i < cars.size(); i++){
+            System.out.printf("%d) %s%n", i+1, cars.get(i));
         }
         System.out.println();
     }
