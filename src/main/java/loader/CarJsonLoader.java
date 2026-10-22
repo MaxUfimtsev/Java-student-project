@@ -1,4 +1,7 @@
+package main.java.loader;
+
 import com.google.gson.*;
+import main.java.model.Car;
 
 import java.io.BufferedReader;
 import java.io.IOException;

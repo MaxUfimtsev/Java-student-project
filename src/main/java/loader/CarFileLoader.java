@@ -1,3 +1,7 @@
+package main.java.loader;
+
+import main.java.model.Car;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -51,7 +55,6 @@ public class CarFileLoader {
                     Integer.parseInt(carParts[2]),
                     Integer.parseInt(carParts[3]),
                     carParts[4]);
-            car.validate();
             return car;
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("Год и мощность должны быть числами.");
